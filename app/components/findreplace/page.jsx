@@ -1,21 +1,14 @@
 "use client"
 
-import Nav from "../components/Header/Nav";
 import { useState, useEffect } from "react";
-import './page.css'
+import './findreplace.css'
 
 export default function FindReplace() {
+
   const [sentence, setSentence] = useState('');
   const [word, setWord] = useState('');
   const [replaceWord, setReplaceWord] = useState('');
-
-  useEffect(() => {
-    var fileData = localStorage.getItem("file-data") || " ";
-    window.onload = () => {
-      document.getElementById('textarea').innerHTML = fileData;
-    }
-  }, []);
-
+  
   const find = () => {
       const match = sentence.indexOf(word);
       if(sentence !== " "){
@@ -34,18 +27,55 @@ export default function FindReplace() {
   const replace = () => {
     const input = document.querySelector('#textarea');
     input.value = sentence.replace(word, replaceWord);
-    console.log(sentence.replace(word, replaceWord));
   }
 
   const reset = () => {
-    if(confirm("You want to reset?")=== true){
-      document.getElementById('textarea').innerHTML = " ";
+    if(confirm("You want to reset?") === true){
+      localStorage.clear();
+      window.location.reload();
     }
+  }
+
+  let fileReader;
+  const handleFileRead = () => {
+    const content = fileReader.result;
+    if(content){
+      if(confirm(`Are you sure? You want to upload this file?`) === true){
+        document.getElementById('textarea').innerHTML = content;
+      }
+    }
+  };
+
+  const handleFileChosen = (file) => {
+    fileReader = new FileReader();
+    fileReader.onloadend = handleFileRead;
+    try{
+      fileReader.readAsText(file);
+    }catch{}
+  };
+
+  function download() {
+    const text = document.getElementById("textarea").value;
+    const blob = new Blob([text], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "ilet.txt";
+    link.click();
   }
 
   return (
     <>
-      <Nav />
+      <div className='upload-container'>
+          <h1>Upload a file to read and display</h1>
+          <input
+              type='file'
+              id='file'
+              className='input-file'
+              accept='.*'
+              onChange={e => handleFileChosen(e.target.files[0])}
+          />
+      </div>
       <div className='main-container'>
         <div className="header-wrapper">
           <h2>ஒற்றுப்பிழை மற்றும் சொற்திருத்தி</h2>
@@ -64,6 +94,7 @@ export default function FindReplace() {
         </div>
         <div className="button-wrapper">
           <button onClick={reset} type="reset"><span>Reset</span></button>
+          <button onClick={download}><span>Download</span></button>
         </div>
       </div>
     </>

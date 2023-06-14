@@ -5,37 +5,3 @@
 body{
     background: linear-gradient(to right, rgb(249, 168, 212), rgb(216, 180, 254), rgb(129, 140, 248));
 }
-
-button{
-    margin: 1rem;
-    width: 150px;
-    height: 40px;
-    text-decoration: none;
-    border: 1px solid black;
-    position: relative;
-    transition: all .35s;
-  }
-  
-button span{
-    position: relative;
-    z-index: 2;
-}
-
-button:after{
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: #7c69e9;
-    transition: all .3s;
-}
-
-button:hover{
-    color: #fff;
-}
-
-button:hover:after{
-    width: 100%;
-}
