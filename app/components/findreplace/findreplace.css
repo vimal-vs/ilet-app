@@ -69,6 +69,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: -7rem;
 }
 
 .header-wrapper{
@@ -104,6 +105,7 @@ textarea{
     margin-top: 3rem;
     display: flex;
     flex-direction: column;
+    visibility: hidden;
 }
 
 .upload-container h1{

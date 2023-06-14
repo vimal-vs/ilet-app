@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import './findreplace.css'
+import '../Header/Nav.css'
 
 export default function FindReplace() {
 
@@ -63,9 +64,27 @@ export default function FindReplace() {
     link.download = "ilet.txt";
     link.click();
   }
+  function triggerFile(){
+    document.querySelector("#file").click();
+  }
 
   return (
     <>
+      <nav>
+          <ul>
+              <li><a href="#">File</a>
+                  <ul className="list-element-about-submenu">
+                      <li id="open" onClick={() => triggerFile()}><button>Open</button></li>
+                      <li id="save"><button onClick={() => download()}>Save</button></li>
+                  </ul>
+              </li>
+              <li><a href="/">Find and Replace</a></li>
+              <li><a href="/spellcheck">Spell Check</a></li>
+          </ul>  
+          <div className='logo'>
+              <a href="/"><img src="logo.png"/></a>
+          </div> 
+      </nav>
       <div className='upload-container'>
           <h1>Upload a file to read and display</h1>
           <input

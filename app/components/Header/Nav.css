@@ -36,5 +36,28 @@ a{
 }
 
 a:hover{
+    transition: color 0.2s;
     color: white;
+}
+
+.list-element-about-submenu{
+    display: none;
+    list-style: none;
+    position: absolute;
+    top: 3.6em;
+    left: 0.6em;
+    width: auto;
+    cursor: pointer;
+    border-radius: 0.2em;
+}
+.list-element-about-submenu li{
+    display: block;
+    padding: 1em;
+}
+.list-element-about-submenu li:hover{
+    transition: color 0.4s;
+    color: white;
+}
+Nav li:hover .list-element-about-submenu{
+    display: block;
 }
