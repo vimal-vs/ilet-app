@@ -20,12 +20,12 @@
     left: 0;
     width: 0;
     height: 100%;
-    background: #7c69e9;
+    background: #77b4fa;
     transition: all .3s;
 }
 
 .main-container button:hover{
-    color: #fff;
+    color: black;
 }
 
 .main-container button:hover:after{
@@ -70,6 +70,7 @@
     justify-content: center;
     align-items: center;
     margin-top: -7rem;
+    color: bla
 }
 
 .header-wrapper{
@@ -121,4 +122,8 @@ textarea{
 
 .upload-container button{
     margin: auto;
+}
+
+#download{
+    visibility: hidden;
 }

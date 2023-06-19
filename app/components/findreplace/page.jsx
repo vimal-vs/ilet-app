@@ -113,7 +113,7 @@ export default function FindReplace() {
         </div>
         <div className="button-wrapper">
           <button onClick={reset} type="reset"><span>Reset</span></button>
-          <button onClick={download}><span>Download</span></button>
+          <button id="download" onClick={download}><span>Download</span></button>
         </div>
       </div>
     </>

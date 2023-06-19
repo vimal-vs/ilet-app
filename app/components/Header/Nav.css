@@ -6,7 +6,7 @@ nav{
     justify-content: space-between;
     font-family: 'Sofia Sans', sans-serif;
     padding: 0.6rem;
-    box-shadow: 0rem 0.1rem rgb(0, 0, 0);
+    background-color: rgb(68, 66, 70);
 }
 
 img{
@@ -32,7 +32,6 @@ li{
 a{
     color: white;
     text-decoration: none;
-    color: black;
 }
 
 a:hover{
@@ -40,24 +39,34 @@ a:hover{
     color: white;
 }
 
+li:hover{
+    background-color: white;
+    transition: all 0.2s;
+}
+li:hover a{
+    color: black;
+}
+
 .list-element-about-submenu{
     display: none;
     list-style: none;
     position: absolute;
-    top: 3.6em;
+    top: 3.7em;
     left: 0.6em;
     width: auto;
     cursor: pointer;
-    border-radius: 0.2em;
+    color: white;
 }
 .list-element-about-submenu li{
     display: block;
-    padding: 1em;
+    padding: 0.64em;
 }
 .list-element-about-submenu li:hover{
     transition: color 0.4s;
-    color: white;
+    background-color: white;
+    color: black;
 }
 Nav li:hover .list-element-about-submenu{
     display: block;
+    background-color: rgb(68, 66, 70);
 }
