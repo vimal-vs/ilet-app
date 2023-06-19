@@ -20,12 +20,12 @@
     left: 0;
     width: 0;
     height: 100%;
-    background: #77b4fa;
+    background: #4d5359;
     transition: all .3s;
 }
 
 .main-container button:hover{
-    color: black;
+    color: white;
 }
 
 .main-container button:hover:after{
