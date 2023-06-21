@@ -10,7 +10,11 @@ export default function Nav(){
                         <li><button href="#"></button>Save</li>
                     </ul>
                 </li>
-                <li><a href="/findreplace">Find and Replace</a></li>
+                <li><a href="/">Edit</a>
+                <ul class="list-element-about-submenu">
+                        <li><button href="/findreplace"></button>Open</li>
+                    </ul>
+                </li>
                 <li><a href="/spellcheck">Spell Check</a></li>
             </ul>  
             <div className='logo'>

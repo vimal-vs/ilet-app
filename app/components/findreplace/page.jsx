@@ -9,26 +9,6 @@ export default function FindReplace() {
   const [sentence, setSentence] = useState('');
   const [word, setWord] = useState('');
   const [replaceWord, setReplaceWord] = useState('');
-  
-  const find = () => {
-      const match = sentence.indexOf(word);
-      if(sentence !== " "){
-        if(match !== -1){
-          window.alert(`Element is found at index ${match}`);
-          return;
-        }
-      }
-      else{
-        window.alert(`Enter a sentence/word to find !`);
-        return;
-      }
-      window.alert("No matches found !");
-  }
-
-  const replace = () => {
-    const input = document.querySelector('#textarea');
-    input.value = sentence.replace(word, replaceWord);
-  }
 
   const reset = () => {
     if(confirm("You want to reset?") === true){
@@ -68,6 +48,32 @@ export default function FindReplace() {
     document.querySelector("#file").click();
   }
 
+  function triggerFind(){
+    const findAlertValue = window.prompt("Enter a word to Find","");
+    setWord(findAlertValue);
+      find();
+  }
+
+  function triggerReplace(){
+    const replaceAlertValue = window.prompt("Enter a word to Replace","");
+    setReplaceWord(replaceAlertValue);
+      replace(replaceAlertValue);
+  }
+
+  const find = () => {
+      const match = sentence.indexOf(word);
+      if(match){
+        window.alert(`Element is found at index ${match}`);
+        return;
+      }
+      window.alert("No matches found !");
+  }
+
+  const replace = (e) => {
+    const input = document.querySelector('#textarea');
+    input.value = sentence.replace(word, e);
+  }
+
   return (
     <>
       <nav>
@@ -78,7 +84,12 @@ export default function FindReplace() {
                       <li id="save"><button onClick={() => download()}>Save</button></li>
                   </ul>
               </li>
-              <li><a href="/">Find and Replace</a></li>
+              <li><a href="#">Edit</a>
+                <ul className="list-element-about-submenu edit-submenu">
+                        <li><button onClick={() => triggerFind()}>Find</button></li>
+                        <li><button onClick={triggerReplace}>Replace</button></li>
+                    </ul>
+                </li>
               <li><a href="/spellcheck">Spell Check</a></li>
           </ul>  
           <div className='logo'>
@@ -97,24 +108,14 @@ export default function FindReplace() {
       </div>
       <div className='main-container'>
         <div className="header-wrapper">
-          <h2>ஒற்றுப்பிழை மற்றும் சொற்திருத்தி</h2>
-          <h4>Enter The Tamil Text in Unicode and Spellcheck your words.</h4>
+          <h2>Indian language editing tool for Tamil</h2>
           <textarea id="textarea" rows="20" cols="85" onChange={e => setSentence(e.target.value)}></textarea>
         </div>
         <div>
-          <div>
-            <input type="text" placeholder='Enter a word to find' onChange={e => setWord(e.target.value)}/>
-            <button onClick={find}><span>Find</span></button>
-          </div>
-          <div>
-            <input type="text" placeholder='Enter a word to replace' onChange={e => setReplaceWord(e.target.value)}/>
-            <button onClick={replace}><span>Replace</span></button>
-          </div>
-        </div>
         <div className="button-wrapper">
           <button onClick={reset} type="reset"><span>Reset</span></button>
-          <button id="download" onClick={download}><span>Download</span></button>
         </div>
+      </div>
       </div>
     </>
   )

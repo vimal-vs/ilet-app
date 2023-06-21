@@ -70,3 +70,11 @@ Nav li:hover .list-element-about-submenu{
     display: block;
     background-color: rgb(68, 66, 70);
 }
+
+.edit-submenu{
+    left: 4.15em;
+}
+
+.edit-submenu li{
+    padding: 0.69em;
+}
