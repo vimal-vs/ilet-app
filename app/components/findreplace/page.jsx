@@ -3,12 +3,64 @@
 import { useState } from "react";
 import './findreplace.css'
 import '../Header/Nav.css'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
 export default function FindReplace() {
 
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
+  
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Bar Chart',
+      },
+    },
+  };
+  
   const [sentence, setSentence] = useState('');
   const [word, setWord] = useState('');
   const [replaceWord, setReplaceWord] = useState('');
+
+  const labels = ['Total words', 'Unique Words'];
+  var words = sentence.split(" ");
+  const uniqueWords = [...new Set(words)]
+  const wordsBar = [words.length, uniqueWords.length];
+  
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Dataset',
+        data: wordsBar,
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+    ],
+  };
+
+  const chart = () => {
+    document.getElementById("bar").style.visibility == "visible" ? document.getElementById("bar").style.visibility = "hidden" : document.getElementById("bar").style.visibility = "visible";
+  }
 
   const reset = () => {
     if(confirm("You want to reset?") === true){
@@ -49,24 +101,33 @@ export default function FindReplace() {
   }
 
   function triggerFind(){
-    const findAlertValue = window.prompt("Enter a word to Find","");
+    const findAlertValue = window.prompt("Enter a word to Find");
+    console.log(findAlertValue);
     setWord(findAlertValue);
-      find();
+    if(findAlertValue != ""){
+      find(findAlertValue);
+    }
   }
 
   function triggerReplace(){
-    const replaceAlertValue = window.prompt("Enter a word to Replace","");
+    const replaceAlertValue = window.prompt("Enter a word to Replace");
     setReplaceWord(replaceAlertValue);
-      replace(replaceAlertValue);
+    replace(replaceAlertValue);
   }
 
-  const find = () => {
-      const match = sentence.indexOf(word);
-      if(match){
+  const find = (e) => {
+    const match = sentence.indexOf(e);
+    if(sentence !== " "){
+      if(match !== -1){
         window.alert(`Element is found at index ${match}`);
         return;
       }
-      window.alert("No matches found !");
+    }
+    else{
+      window.alert(`Enter a sentence/word to find !`);
+      return;
+    }
+    window.alert("No matches found !");
   }
 
   const replace = (e) => {
@@ -91,6 +152,7 @@ export default function FindReplace() {
                     </ul>
                 </li>
               <li><a href="/spellcheck">Spell Check</a></li>
+              <li><button onClick={() => chart()}>Stats</button></li>
           </ul>  
           <div className='logo'>
               <a href="/"><img src="logo.png"/></a>
@@ -116,6 +178,7 @@ export default function FindReplace() {
           <button onClick={reset} type="reset"><span>Reset</span></button>
         </div>
       </div>
+      <Bar id="bar" options={options} data={data} />
       </div>
     </>
   )

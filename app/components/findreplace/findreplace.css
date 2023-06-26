@@ -123,3 +123,7 @@ textarea{
 #download{
     visibility: hidden;
 }
+
+#bar{
+    visibility: hidden;
+}
