@@ -51,7 +51,7 @@ export default function FindReplace() {
     labels,
     datasets: [
       {
-        label: 'Dataset',
+        label: 'Total words vs Unique words',
         data: wordsBar,
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
@@ -178,8 +178,8 @@ export default function FindReplace() {
           <button onClick={reset} type="reset"><span>Reset</span></button>
         </div>
       </div>
-      <Bar id="bar" options={options} data={data} />
       </div>
+      <Bar id="bar" options={options} data={data} />
     </>
   )
 }
